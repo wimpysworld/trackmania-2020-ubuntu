@@ -66,9 +66,9 @@ if [ -z "${PROTON_PATH}" ]; then
 fi
 
 # Create wine prefix
-if [ ! -d "${TM_PATH}/Prefix/drive_c" ]; then
+if [ ! -d "${TM_PATH}/Prefix/drive_c/windows/win.ini" ]; then
   echo "Creating Prefix: ${TM_PATH}/Prefix"
-  env WINEPREFIX="${TM_PATH}/Prefix" "${PROTON_PATH}/wine" wineboot >/dev/null 2>&1
+  env WINEPREFIX="${TM_PATH}/Prefix" "${PROTON_PATH}/wine" wineboot --init >/dev/null 2>&1
 fi
 
 # Install Ubisoft Connect
