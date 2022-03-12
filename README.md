@@ -1,7 +1,7 @@
 <h1 align="center">
   <img src="https://upload.wikimedia.org/wikipedia/en/3/37/Logo_of_Trackmania_%282020%29.png" alt="Trackmania">
   <br />
-  Trackmania 2020</i>
+  Trackmania 2020 for Ubuntu</i>
 </h1>
 
 <p align="center"><b>This is an install script and launcher for Trackmania 2020</b>, <i>"a racing video game and is part of the TrackMania series.</i> It works on Ubuntu and derivative distributions.
