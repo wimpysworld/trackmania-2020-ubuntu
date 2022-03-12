@@ -11,7 +11,7 @@ if command -v lsb_release 1>/dev/null; then
   case "${OS_ID}" in
     Elementary|Linuxmint|Neon|Pop|Ubuntu)
       # Install dependancies
-      for PACKAGE in libudev0 winbind wine-development; do
+      for PACKAGE in libudev0 winbind wine32; do
         if ! dpkg -s ${PACKAGE} 1>/dev/null; then
           echo "Installing ${PACKAGE}:"
           sudo apt-get -y install ${PACKAGE}
