@@ -5,29 +5,30 @@ if [ "$(id -u)" -eq 0 ]; then
   exit 1
 fi
 
-# Install Proton GE requirements for Ubuntu and derivatives
+TM_PATH="${HOME}/Games/TM2020"
+mkdir -p "${TM_PATH}"/{Prefix,Proton}
+
+# Install Wine GE Proton requirements for Ubuntu and derivatives
 if command -v lsb_release 1>/dev/null; then
   OS_ID=$(lsb_release --id --short)
   case "${OS_ID}" in
     Elementary|Linuxmint|Neon|Pop|Ubuntu)
-      # Install dependancies
-      for PACKAGE in libudev0 winbind wine32; do
-        if ! dpkg -s ${PACKAGE} 1>/dev/null; then
-          echo "Installing ${PACKAGE}:"
-          sudo apt-get -y install ${PACKAGE}
-        else
-          echo "${PACKAGE} is already iinstalled. This is good."
-        fi
-      done
+      if ! dpkg -s winehq-staging 1>/dev/null; then
+        echo "Installing winehq-staging"
+        wget -nc https://dl.winehq.org/wine-builds/winehq.key -O "${TM_PATH}/winehq.key"
+        sudo dpkg --add-architecture i386 && \
+        sudo apt-key add "${TM_PATH}/winehq.key" && \
+        sudo apt-add-repository -y --no-update 'https://dl.winehq.org/wine-builds/ubuntu/' && \
+        sudo apt-get -y update && \
+        sudo apt-get -y install --install-recommends winehq-staging && \
+        sudo apt-get -y install winetricks
+      fi
       ;;
-    *) echo "WARNING! Unknown distro, you might need to install 'libudev0' and 'winbind' manually.";;
+    *) echo "WARNING! Unknown distro, you need to install winehq-staging manually.";;
   esac
 else
-  echo "WARNING! Unknown distro, you might need to install 'libudev0' and 'winbind' manually."
+  echo "WARNING! Unknown distro, you need to install winehq-staging manually."
 fi
-
-TM_PATH="${HOME}/Games/TM2020"
-mkdir -p "${TM_PATH}"/{Prefix,Proton}
 
 # Download UbisoftConnectInstaller.exe
 echo "Downloading UbisoftConnectInstaller.exe"
@@ -38,32 +39,20 @@ fi
 
 # Download Proton GE
 PROTON_PATH=""
-PROTON_VER="7.3-GE-1"
-echo "Downloading Proton-${PROTON_VER}.tar.gz"
-if ! wget --quiet --continue --show-progress --progress=bar:force:noscroll "https://github.com/GloriousEggroll/proton-ge-custom/releases/download/${PROTON_VER}/Proton-${PROTON_VER}.tar.gz" -O "${TM_PATH}/Proton-${PROTON_VER}.tar.gz"; then
-  echo "ERROR! Failed to download Proton-${PROTON_VER}.tar.gz. Try running ${0} again."
+PROTON_VER="GE-Proton7-6"
+echo "Downloading wine-lutris-${PROTON_VER}-x86_64.tar.xz"
+if ! wget --quiet --continue --show-progress --progress=bar:force:noscroll "https://github.com/GloriousEggroll/wine-ge-custom/releases/download/${PROTON_VER}/wine-lutris-${PROTON_VER}-x86_64.tar.xz" -O "${TM_PATH}/wine-lutris-${PROTON_VER}-x86_64.tar.xz"; then
+  echo "ERROR! Failed to download wine-lutris-${PROTON_VER}-x86_64.tar.xz. Try running ${0} again."
   exit 1
 fi
 
 # Unpack Proton
-if [ ! -d "${TM_PATH}/Proton/Proton-${PROTON_VER}" ]; then
-  echo "Unpacking Proton-${PROTON_VER}.tar.gz"
-  tar -xf "${TM_PATH}/Proton-${PROTON_VER}.tar.gz" -C "${TM_PATH}/Proton/"
+if [ ! -d "${TM_PATH}/Proton/wine-lutris-${PROTON_VER}-x86_64" ]; then
+  echo "Unpacking wine-lutris-${PROTON_VER}-x86_64.tar.xz"
+  tar -xf "${TM_PATH}/wine-lutris-${PROTON_VER}-x86_64.tar.xz" -C "${TM_PATH}/Proton/"
 fi
 
-# Determine where the wine executables are
-for BIN in dist files; do
-  if [ -d "${TM_PATH}/Proton/Proton-${PROTON_VER}/${BIN}/bin" ]; then
-    PROTON_PATH="${TM_PATH}/Proton/Proton-${PROTON_VER}/${BIN}/bin"
-    break
-  fi
-done
-
-if [ -z "${PROTON_PATH}" ]; then
-  echo "ERROR! Could not find wine executable"
-  ls -l "${TM_PATH}/Proton/Proton-${PROTON_VER}/"
-  exit 1
-fi
+PROTON_PATH="${TM_PATH}/Proton/lutris-${PROTON_VER}-x86_64/bin"
 
 # Create wine prefix
 if [ ! -e "${TM_PATH}/Prefix/drive_c/windows/win.ini" ]; then

@@ -10,7 +10,8 @@ Made with 💝 for <img src=".github/ubuntu.png" align="top" width="18" /></p>
 
 ## Install
 
-The first time you run `tm2020.sh` it will download [UbisoftConnect](https://ubisoftconnect.com/en-GB/) and [Proton-GE](https://github.com/GloriousEggroll/proton-ge-custom) in create an isolated Proton environment in `~/Games/TM2020`.
+The first time you run `tm2020.sh` it will download [UbisoftConnect](https://ubisoftconnect.com/en-GB/), [Wine-GE](https://github.com/gloriouseggroll/wine-ge-custom) and [Wine-Staging](https://wiki.winehq.org/Wine-Staging) to
+create an isolated environment in `~/Games/TM2020`.
 
 ```bash
 git clone https://github.com/wimpysworld/trackmania-2020-ubuntu.git
