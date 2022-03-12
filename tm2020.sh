@@ -68,13 +68,13 @@ fi
 # Create wine prefix
 if [ ! -e "${TM_PATH}/Prefix/drive_c/windows/win.ini" ]; then
   echo "Creating Prefix: ${TM_PATH}/Prefix"
-  env WINEPREFIX="${TM_PATH}/Prefix" "${PROTON_PATH}/wine" wineboot --init >/dev/null 2>&1
+  env WINEDEBUG=-all WINEPREFIX="${TM_PATH}/Prefix" "${PROTON_PATH}/wine" wineboot --init >/dev/null 2>&1
 fi
 
 # Install Ubisoft Connect
 if [ ! -e "${TM_PATH}/Prefix/drive_c/Program Files (x86)/Ubisoft/Ubisoft Game Launcher/UbisoftConnect.exe" ]; then
   echo "Installing UbisoftConnectInstaller.exe"
-  env WINEPREFIX="${TM_PATH}/Prefix" "${PROTON_PATH}/wine" "${TM_PATH}/UbisoftConnectInstaller.exe" /S >/dev/null 2>&1
+  env WINEDEBUG=-all WINEPREFIX="${TM_PATH}/Prefix" "${PROTON_PATH}/wine" "${TM_PATH}/UbisoftConnectInstaller.exe" /S >/dev/null 2>&1
 fi
 
 # Tweak Ubisoft Game Launcher
@@ -88,7 +88,7 @@ fi
 
 # Launch Track Mania 2020
 if [ -e "${TM_PATH}/Prefix/drive_c/Program Files (x86)/Ubisoft/Ubisoft Game Launcher/games/Trackmania/Trackmania.exe" ]; then
-  env WINEPREFIX="${TM_PATH}/Prefix" WINEDLLOVERRIDES="winemenubuilder.exe=d" "${PROTON_PATH}/wine" "${TM_PATH}/Prefix/drive_c/Program Files (x86)/Ubisoft/Ubisoft Game Launcher/games/Trackmania/Trackmania.exe"
+  env WINEDEBUG=-all WINEPREFIX="${TM_PATH}/Prefix" WINEDLLOVERRIDES="winemenubuilder.exe=d" "${PROTON_PATH}/wine" "${TM_PATH}/Prefix/drive_c/Program Files (x86)/Ubisoft/Ubisoft Game Launcher/games/Trackmania/Trackmania.exe"
 else
-  env WINEPREFIX="${TM_PATH}/Prefix" WINEDLLOVERRIDES="winemenubuilder.exe=d" "${PROTON_PATH}/wine" "${TM_PATH}/Prefix/drive_c/Program Files (x86)/Ubisoft/Ubisoft Game Launcher/UbisoftConnect.exe" "uplay://launch/5595/0"
+  env WINEDEBUG=-all WINEPREFIX="${TM_PATH}/Prefix" WINEDLLOVERRIDES="winemenubuilder.exe=d" "${PROTON_PATH}/wine" "${TM_PATH}/Prefix/drive_c/Program Files (x86)/Ubisoft/Ubisoft Game Launcher/UbisoftConnect.exe" "uplay://launch/5595/0"
 fi
