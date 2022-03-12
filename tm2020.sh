@@ -47,7 +47,7 @@ if ! wget --quiet --continue --show-progress --progress=bar:force:noscroll "http
 fi
 
 # Unpack Proton
-if [ ! -d "${TM_PATH}/Proton/wine-lutris-${PROTON_VER}-x86_64" ]; then
+if [ ! -d "${TM_PATH}/Proton/lutris-${PROTON_VER}-x86_64" ]; then
   echo "Unpacking wine-lutris-${PROTON_VER}-x86_64.tar.xz"
   tar -xf "${TM_PATH}/wine-lutris-${PROTON_VER}-x86_64.tar.xz" -C "${TM_PATH}/Proton/"
 fi
