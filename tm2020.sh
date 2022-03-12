@@ -32,7 +32,7 @@ mkdir -p "${TM_PATH}"/{Prefix,Proton}
 # Download UbisoftConnectInstaller.exe
 echo "Downloading UbisoftConnectInstaller.exe"
 if ! wget --quiet --continue --show-progress --progress=bar:force:noscroll "https://ubistatic3-a.akamaihd.net/orbit/launcher_installer/UbisoftConnectInstaller.exe" -O "${TM_PATH}/UbisoftConnectInstaller.exe"; then
-  echo "ERROR! Failed to download ${URL}. Try running ${0} again."
+  echo "ERROR! Failed to download UbisoftConnectInstaller.exe. Try running ${0} again."
   exit 1
 fi
 
@@ -41,7 +41,7 @@ PROTON_PATH=""
 PROTON_VER="7.3-GE-1"
 echo "Downloading Proton-${PROTON_VER}.tar.gz"
 if ! wget --quiet --continue --show-progress --progress=bar:force:noscroll "https://github.com/GloriousEggroll/proton-ge-custom/releases/download/${PROTON_VER}/Proton-${PROTON_VER}.tar.gz" -O "${TM_PATH}/Proton-${PROTON_VER}.tar.gz"; then
-  echo "ERROR! Failed to download ${URL}. Try running ${0} again."
+  echo "ERROR! Failed to download Proton-${PROTON_VER}.tar.gz. Try running ${0} again."
   exit 1
 fi
 
