@@ -18,6 +18,8 @@ cd trackmania-2020-ubuntu
 ./tm2020.sh
 ```
 
+  * Login to, or create an account for, Ubisoft Connect when it launches so you can download the game.
+
 ## Launcher
 
 Subsequent executions of `tm2020.sh` will launch `Trackmania.exe` directly.
