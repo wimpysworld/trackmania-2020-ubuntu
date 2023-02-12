@@ -4,6 +4,8 @@
   Trackmania 2020 for Ubuntu</i>
 </h1>
 
+**THIS SCRIPT IS OBSOLETE, TRACKMANIA CAN BE INSTALLED ON LINUX CIA STEAM WITRH NO HACKS REQUIRED**
+
 <p align="center"><b>This is an install script and launcher for Trackmania 2020</b>, <i>"a racing video game and is part of the TrackMania series.</i> It works on Ubuntu and derivative distributions.
 <br />
 Made with 💝 for <img src=".github/ubuntu.png" align="top" width="18" /></p>
